@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CameraPage extends StatelessWidget {
-  const CameraPage({super.key});
+class discrebtion extends StatelessWidget {
+  const discrebtion({super.key});
 
   @override
   Widget build(BuildContext context) {

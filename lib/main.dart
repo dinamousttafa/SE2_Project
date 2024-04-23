@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project/category/notifi_Caregory.dart';
 import 'package:project/pages/discribtion.dart';
 import 'package:project/pages/homePage.dart';
+import 'package:project/pages/notificationpage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(NotificationPage());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           controller: _pageControlller,
           children: const <Widget>[
             HomePage(),
-            CameraPage(),
+            discrebtion(),
             ProfilePage(),
           ],
         ),
