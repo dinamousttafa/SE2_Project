@@ -10,7 +10,6 @@ import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(NotificationPage());
-  AhmedHamad;
 }
 
 class MyApp extends StatelessWidget {
