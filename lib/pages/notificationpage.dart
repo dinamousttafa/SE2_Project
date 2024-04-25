@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:project/category/notifi_Caregory.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -6,6 +7,17 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> noti_list = [];
+
+    for (int i = 0; i < noti_list.length; i++) {
+      noti_list.add(
+        notification(
+          text1: 'Developer',
+          text2: 'Amgoood',
+        ),
+      );
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -24,23 +36,7 @@ class NotificationPage extends StatelessWidget {
               text1: 'Here what will be added',
               text2: 'Amged Elsayed',
             ),
-           
-            notification(
-              text1: 'My son',
-              text2: 'Hamad ',
-            )
-            ,notification(
-              text1: 'My little son',
-              text2: 'Senosy ',
-            ),
-            notification(
-              text1: 'My daughter',
-              text2: 'dina ',
-            ),
-            notification(
-              text1: 'My little daughter',
-              text2: 'Renad ',
-            )
+            for (int i = 0; i < noti_list.length; i++) noti_list[i],
           ],
         ),
       ),

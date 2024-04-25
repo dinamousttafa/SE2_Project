@@ -33,22 +33,19 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   category(
-                    context,
-                    'images/web.jpeg',
-                    'Web Aplication',
-                    'Visit',
+                    imageUrl: 'images/web.jpeg',
+                    title: 'Web Aplication',
+                    onTap: () {},
                   ),
                   category(
-                    context,
-                    'images/games.jpeg',
-                    'Games',
-                    'Visit',
+                    imageUrl: 'images/games.jpeg',
+                    title: 'Games',
+                    onTap: () {},
                   ),
                   category(
-                    context,
-                    'images/mobile.jpeg',
-                    'mobile app',
-                    'Visit',
+                    imageUrl: 'images/mobile.jpeg',
+                    title: 'mobile app',
+                    onTap: () {},
                   ),
                   Spacer(
                     flex: 1,

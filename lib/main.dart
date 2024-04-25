@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:project/category/bookCategory.dart';
 import 'package:project/category/notifi_Caregory.dart';
-import 'package:project/pages/discribtion.dart';
+// import 'package:project/pages/bookingPage.dart';
+import 'package:project/pages/bookingPage.dart';
 import 'package:project/pages/homePage.dart';
 import 'package:project/pages/notificationpage.dart';
-import 'package:project/pages/profilePage.dart';
+
+import 'package:project/pages/requestPage.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(NotificationPage());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             " Web Service ",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           backgroundColor: Color(0xFF345069),
         ),
@@ -37,8 +40,8 @@ class MyApp extends StatelessWidget {
           controller: _pageControlller,
           children: const <Widget>[
             HomePage(),
-            discrebtion(),
-            ProfilePage(),
+            BookingPage(),
+           
           ],
         ),
         extendBody: true,
@@ -50,10 +53,9 @@ class MyApp extends StatelessWidget {
           items: const [
             RollingBottomBarItem(Icons.home,
                 label: 'Home', activeColor: Color.fromARGB(255, 0, 0, 0)),
-            RollingBottomBarItem(Icons.chat_sharp,
-                label: 'Discribe', activeColor: Color.fromARGB(255, 0, 0, 0)),
             RollingBottomBarItem(Icons.sticky_note_2,
-                label: 'Person', activeColor: Color.fromARGB(255, 0, 0, 0)),
+                label: 'Booking', activeColor: Color.fromARGB(255, 0, 0, 0)),
+           
           ],
           enableIconRotation: true,
           onTap: (index) {
