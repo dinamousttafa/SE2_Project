@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             " Web Service ",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           backgroundColor: Color(0xFF345069),
         ),
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
           children: const <Widget>[
             HomePage(),
             BookingPage(),
-           
           ],
         ),
         extendBody: true,
@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
                 label: 'Home', activeColor: Color.fromARGB(255, 0, 0, 0)),
             RollingBottomBarItem(Icons.sticky_note_2,
                 label: 'Booking', activeColor: Color.fromARGB(255, 0, 0, 0)),
-           
           ],
           enableIconRotation: true,
           onTap: (index) {
