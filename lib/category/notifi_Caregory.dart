@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class notification extends StatelessWidget {
   notification({this.text1, this.text2});
   String? text1;

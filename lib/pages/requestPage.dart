@@ -28,7 +28,7 @@ class requestPage extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
                       radius: 70,
-                      backgroundImage: AssetImage('images/logo.jpeg'),
+                      backgroundImage: AssetImage('assets/images/logo.jpeg'),
                     ),
                   ),
                 ),
