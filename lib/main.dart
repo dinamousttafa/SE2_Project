@@ -70,10 +70,6 @@
 //   }
 // }
 
-
-
-
-
 //dinnna'z main
 // ignore_for_file: unused_local_variable, non_constant_identifier_names, prefer_const_constructors, camel_case_types
 
@@ -141,14 +137,13 @@ class myRoutes {
   }
 }
 
-*/////////////////////////////renad///////////////////////////////////////////////////////////////////////////////////////////////////
-
+*/ ////////////////////////////renad///////////////////////////////////////////////////////////////////////////////////////////////////
 
 import 'package:flutter/material.dart';
 import 'views/webApplactionsCategory.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -162,6 +157,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-

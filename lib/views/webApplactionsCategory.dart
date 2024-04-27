@@ -1,9 +1,9 @@
-import 'dart:js';
+// import 'dart:js';
 import 'dart:ui';
-import 'package:flutter/gestures.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter/gestures.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/views/applicationmodel.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'Drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
