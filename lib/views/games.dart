@@ -1,9 +1,9 @@
-import 'dart:js';
-import 'package:flutter/gestures.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'dart:js';
+// import 'package:flutter/gestures.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/views/applicationmodel.dart';
 
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 import 'Drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/widgets.dart';
 
 import 'Drawerheader.dart';
 import 'applicationtemplate.dart';
-
 
 class gamesCategory extends StatefulWidget {
   State<gamesCategory> createState() => _gamesCategoryState();
@@ -92,7 +91,7 @@ class _gamesCategoryState extends State<gamesCategory> {
           ),
         ],
       ),
-      body:   ListView(children: [
+      body: ListView(children: [
         Apptemplate(app: Apps[0]),
         Apptemplate(app: Apps[1]),
         Apptemplate(app: Apps[2]),
@@ -108,7 +107,6 @@ class _gamesCategoryState extends State<gamesCategory> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xffadbccd),
-              
             ),
             onPressed: () {},
             child: Text(
