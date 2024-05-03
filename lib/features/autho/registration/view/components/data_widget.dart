@@ -68,7 +68,7 @@ class DataWidget extends StatelessWidget {
                   //password
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: controller.passwordController,
+                    controller:  controller.passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     validator: PolyVerseValidation().passwordValidator,
                     obscureText: true,
@@ -86,7 +86,7 @@ class DataWidget extends StatelessWidget {
                     controller: controller.cPassController,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (value) {
-                      return PolyVerseValidation.repeatPasswordValidator(
+                      return PolyVerseValidation().repeatPasswordValidator(
                         value: value,
                         password: controller.passwordController.text,
                       );
