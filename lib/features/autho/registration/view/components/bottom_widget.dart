@@ -19,7 +19,7 @@ class BottomNavigationWidget extends StatelessWidget {
             return Column(
               children: [
                 SizedBox(
-                  height: 50,
+                  height:50,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff18447E),
@@ -28,7 +28,7 @@ class BottomNavigationWidget extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                     controller.onPressedConfirmButton() ;
+                     controller.onPressedConfirmButton(context) ;
                         Navigator.push(
                           context,
                           MaterialPageRoute(

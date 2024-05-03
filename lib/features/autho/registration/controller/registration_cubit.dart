@@ -14,13 +14,9 @@ class RegistrationCubit extends Cubit<RegistrationState> {
   TextEditingController mailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
   GlobalKey<FormState> formKey =GlobalKey<FormState>();
- void onPressedConfirmButton(){
+ void onPressedConfirmButton(BuildContext context){
     if(formKey.currentState!.validate() ){
-      log(firstNameController.text);
-      log(passwordController.text);
-      log(cPassController.text);
-      log(mailController.text);
-
+    Navigator.pushNamed(context, 'verification');
     }
     else{
       print("invalid inputs");

@@ -74,10 +74,9 @@
 
 
 
-//dinnna'z main
-// ignore_for_file: unused_local_variable, non_constant_identifier_names, prefer_const_constructors, camel_case_types
+////////////////////////////////////////dinnna'z main/////////////////////////////////////////////////
 
-/*import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:project/features/autho/login/view/page/login.dart';
 import 'package:project/features/autho/onboarding/view/page/onboarding.dart';
@@ -132,7 +131,10 @@ class myRoutes {
       case 'registration':
         return MaterialPageRoute<dynamic>(
             builder: (BuildContext context) =>  RegestrationPage());
-
+      case 'verification':
+        return MaterialPageRoute<dynamic>(
+            builder: (BuildContext context) =>  verificationPage());
+      
       default:
         return MaterialPageRoute<dynamic>(
           builder: (BuildContext context) =>  OnboardingScreen(),
@@ -141,27 +143,27 @@ class myRoutes {
   }
 }
 
-*/////////////////////////////renad///////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////renad///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-import 'package:flutter/material.dart';
-import 'views/webApplactionsCategory.dart';
+// import 'package:flutter/material.dart';
+// import 'views/webApplactionsCategory.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: webCategory(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: webCategory(),
+//     );
+//   }
+// }
 
 
 
