@@ -88,23 +88,28 @@ class dataWidget extends StatelessWidget {
                       .signInWithEmailAndPassword(
                           email: emailController.text,
                           password: passwordController.text);
-                  Navigator.of(context).pushReplacementNamed('home');
+
+                  if (credential.user!.emailVerified) {
+                    Navigator.of(context).pushReplacementNamed('home');
+                  } else {
+                                       Navigator.of(context).pushReplacementNamed('verification');
+
+                  }
                 } on FirebaseAuthException catch (e) {
                   print(context);
-                  if (e.code ==e.code) {
+                  if (e.code == e.code) {
                     log('No user found for that email.');
                     AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.error,
-                      animType: AnimType.rightSlide,
-                      title: 'Error',
-                      desc: 'invalid email or password.'
-                  
-                    ).show();
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            title: 'Error',
+                            desc: 'invalid email or password.')
+                        .show();
+                  }
 
-                  } 
                   ///i need to distinguish between them
-                  
+
                   // else if (e.code == 'wrong-password') {
                   //   log('Wrong password provided for that user.');
                   //   AwesomeDialog(
@@ -113,10 +118,9 @@ class dataWidget extends StatelessWidget {
                   //     animType: AnimType.rightSlide,
                   //     title: 'Error',
                   //     desc: 'Wrong password provided for that user.',
-              
-                      
+
                   //   ).show();
-                  
+
                   // }
                 }
               },

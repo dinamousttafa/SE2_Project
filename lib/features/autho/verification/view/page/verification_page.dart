@@ -1,3 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -34,7 +36,7 @@ class verificationPage extends StatelessWidget {
                     child: SizedBox(
                       width: context.width,
                       child: Text(
-                        "Please Enter your code",
+                        "verify your email",
                         style: TextStyle(
                           color: Color(0xff18447E),
                           fontSize: 35,
@@ -95,8 +97,20 @@ class verificationPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       cubit.confirm();
-                      Navigator.pushReplacementNamed(
-                          context, 'home'); // Make sure 'home' is correct
+                      if( FirebaseAuth.instance.currentUser!.emailVerified){
+  Navigator.of(context).pushReplacementNamed('home');
+}else
+{
+   AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            title: 'Error',
+                            desc:
+                                'Please Go To Your Gmail And Verify Your Email')
+                        .show();
+                  
+}
                     },
                     icon: Icon(Icons.done, size: 50),
                   ),

@@ -36,11 +36,8 @@ class BottomNavigationWidget extends StatelessWidget {
                           email: controller.mailController.text,
                           password: controller.passwordController.text,
                         );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => verificationPage()),
-                        );
+                        FirebaseAuth.instance.currentUser!.sendEmailVerification();
+                        Navigator.of(context).pushReplacementNamed('verification');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           print('The password provided is too weak.');

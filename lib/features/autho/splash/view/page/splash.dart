@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:project/features/autho/login/view/page/login.dart';
 import 'package:project/features/autho/onboarding/view/page/onboarding.dart';
 import 'package:project/features/autho/registration/view/page/registration_page.dart';
+import 'package:project/features/autho/verification/view/page/verification_page.dart';
 import 'package:project/pages/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,15 +31,17 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(seconds: 3));
 
     if (onboardingCompleted) {
-      if (FirebaseAuth.instance.currentUser == null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => loginPage()),
-        );
-      } else {
+      if (FirebaseAuth.instance.currentUser != null &&
+          FirebaseAuth.instance.currentUser!.emailVerified) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => loginPage()),
         );
       }
     } else {
