@@ -1,12 +1,12 @@
 import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/core/utilis/validation.dart';
 import 'package:project/features/autho/login/view/components/custombtn.dart';
 import 'package:project/features/autho/login/view/components/customtxtbtn.dart';
-
 class dataWidget extends StatelessWidget {
   dataWidget({Key? key});
   TextEditingController passwordController = TextEditingController();
@@ -14,6 +14,41 @@ class dataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///sign in with google function
+  Future<void> signInWithGoogle(BuildContext context) async {
+  try {
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+    );
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+    if (googleUser != null) {
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      Navigator.of(context).pushReplacementNamed('home');
+    } else {
+      print('Google sign-in canceled');
+      return;
+    }
+  } catch (e) {
+    print('Error signing in with Google: $e');
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.rightSlide,
+      title: 'Error',
+      desc: 'Failed to sign in with Google. Please try again later.',
+    ).show();
+  }
+}
+
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -28,17 +63,20 @@ class dataWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Center(
-              child: Text(
-                'PolyVerse',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF144989),
-                  fontFamily: 'Pacifico',
+              child: Padding(
+                padding: EdgeInsets.only(left: 120),
+                child: Text(
+                  'PolyVerse',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF144989),
+                    fontFamily: 'Pacifico',
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
             const Padding(
               padding: EdgeInsets.only(left: 30),
               child: Text(
@@ -92,7 +130,7 @@ class dataWidget extends StatelessWidget {
                   if (credential.user!.emailVerified) {
                     Navigator.of(context).pushReplacementNamed('home');
                   } else {
-                                       Navigator.of(context).pushReplacementNamed('verification');
+                    Navigator.of(context).pushReplacementNamed('verification');
 
                   }
                 } on FirebaseAuthException catch (e) {
@@ -126,6 +164,45 @@ class dataWidget extends StatelessWidget {
               },
             ),
             const SizedBox(height: 20),
+          Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 50),
+  child: Container(
+    width: double.infinity,
+    child: ElevatedButton(
+      onPressed: () {
+        signInWithGoogle(context);
+      },
+      style: ElevatedButton.styleFrom(
+       //foregroundColor: Color(0xffF7F7F5),
+        backgroundColor: Color(0xff4B6EC0),
+        padding: EdgeInsets.symmetric(vertical: 15),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Login with Google",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+              fontFamily: 'Pacifico',
+              color: Colors.white,
+            ),
+            
+          ),
+          SizedBox(width: 10,),
+          
+         Image.asset('assets/images/4.png',width: 30,),
+          
+        ],
+      ),
+    ),
+  ),
+),
+       const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
