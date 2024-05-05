@@ -1,9 +1,12 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
-
+apply plugin: 'com.google.gms.google-services'
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -49,6 +52,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+         multiDexEnabled true
+
     }
 
     buildTypes {
@@ -64,4 +69,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {  
+    implementation 'com.android.support:multidex:1.0.3'
+}

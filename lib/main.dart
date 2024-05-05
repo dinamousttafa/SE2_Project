@@ -1,3 +1,36 @@
+
+///dinaaz main
+import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:project/core/utilis/my_routes.dart';
+import 'package:project/features/autho/splash/view/page/splash.dart';
+import 'package:project/firebase_options.dart';
+
+
+
+void main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => MaterialApp(
+        home: Splash(), // Show Splash screen initially
+        builder: DevicePreview.appBuilder,
+        useInheritedMediaQuery: true,
+        onGenerateRoute: myRoutes.onGenerateRoute,
+      ),
+    ),
+  );
+}
+
+
+
+///amged main
+
 // import 'package:flutter/material.dart';
 // import 'package:project/category/bookCategory.dart';
 // import 'package:project/category/notifi_Caregory.dart';
@@ -69,91 +102,24 @@
 //     );
 //   }
 // }
-
-//dinnna'z main
-// ignore_for_file: unused_local_variable, non_constant_identifier_names, prefer_const_constructors, camel_case_types
-
-/*import 'package:device_preview/device_preview.dart';
-import 'package:flutter/material.dart';
-import 'package:project/features/autho/login/view/page/login.dart';
-import 'package:project/features/autho/onboarding/view/page/onboarding.dart';
-import 'package:project/features/autho/registration/view/page/registration_page.dart';
-import 'package:project/features/autho/splash/view/page/splash.dart';
-import 'package:project/features/autho/verification/view/page/verification_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+////////////////////////////////////////////////////////renad///////////////////////////////////////////////////
 
 
-void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Ensure that Flutter is initialized
+// import 'package:flutter/material.dart';
+// import 'views/webApplactionsCategory.dart';
 
-  // Initialize SharedPreferences
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  bool onBoarding = sharedPreferences.getBool('onboarding') ?? false;
+// void main() {
+//   runApp(MyApp());
+// }
 
-  runApp( se2(),);
-}
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-class se2 extends StatelessWidget {
-  const se2 ({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    //Splash()
-    return MaterialApp(
-      home:Splash());
-  }
-}
-
-class myRoutes {
-  static List<Route> initRoutes(RouteSettings initialRoute) {
-    return [
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => const OnboardingScreen(),
-      ),
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => const RegestrationPage(),
-      ),
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => const verificationPage(),
-      ),
-    ];
-  }
-
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case 'login':
-        return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) =>  loginPage());
-      case 'registration':
-        return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) =>  RegestrationPage());
-
-      default:
-        return MaterialPageRoute<dynamic>(
-          builder: (BuildContext context) =>  OnboardingScreen(),
-        );
-    }
-  }
-}
-
-*/ ////////////////////////////renad///////////////////////////////////////////////////////////////////////////////////////////////////
-
-import 'package:flutter/material.dart';
-import 'views/webApplactionsCategory.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: webCategory(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: webCategory(),
+//     );
+//   }
+// }
