@@ -169,8 +169,8 @@ class dataWidget extends StatelessWidget {
   child: Container(
     width: double.infinity,
     child: ElevatedButton(
-      onPressed: () {
-        signInWithGoogle(context);
+      onPressed: ()async {
+        await signInWithGoogle(context);
       },
       style: ElevatedButton.styleFrom(
        //foregroundColor: Color(0xffF7F7F5),

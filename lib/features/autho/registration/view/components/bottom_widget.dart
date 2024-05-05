@@ -60,7 +60,7 @@ class BottomNavigationWidget extends StatelessWidget {
                               .show();
                         }
                         else{
-                          print('The account already exists for that email.');
+                          print('Please Fill All The Existing Fields');
                           AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.error,

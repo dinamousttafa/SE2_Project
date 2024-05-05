@@ -31,15 +31,14 @@ class verificationPage extends StatelessWidget {
                     height: 40,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0,left: 20),
-                    
+                    padding: const EdgeInsets.only(top: 20.0, left: 20),
                     child: SizedBox(
                       width: context.width,
                       child: Text(
-                        "verify your email",
+                        "Please Verify Your Email!.",
                         style: TextStyle(
                           color: Color(0xff18447E),
-                          fontSize: 35,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Pacifico',
                         ),
@@ -47,72 +46,26 @@ class verificationPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 15,
-                  ),
-                  PinCodeTextField(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    appContext: context,
-                    length: 5,
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                    blinkWhenObscuring: true,
-                    animationType: AnimationType.fade,
-                    validator: (v) {
-                      if (v!.length < 3) {
-                        return "I'm from validator";
-                      } else {
-                        return null;
-                      }
-                    },
-                    pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.circle,
-                      fieldOuterPadding:
-                          EdgeInsets.symmetric(horizontal: context.width / 70),
-                      fieldHeight: context.height / 6,
-                      fieldWidth: context.width / 6,
-                      activeFillColor: Colors.white,
-                      inactiveFillColor: Color(0xff18447E),
-                      inactiveColor: Color(0xff18447E),
-                      activeColor: Color(0xff18447E),
-                      selectedFillColor: Colors.white,
-                      selectedColor: Color(0xff18447E),
-                    ),
-                    cursorColor: Colors.black,
-                    animationDuration: const Duration(milliseconds: 300),
-                    enableActiveFill: true,
-                    controller: cubit.pinCodeController,
-                    keyboardType: TextInputType.number,
-                    boxShadows: const [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        color: Colors.black12,
-                        blurRadius: 10,
-                      )
-                    ],
-                    onCompleted: (v) {
-                      debugPrint("Completed");
-                    },
-                    onChanged: (value) {},
+                    height: 30,
                   ),
                   IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       cubit.confirm();
-                      if( FirebaseAuth.instance.currentUser!.emailVerified){
-  Navigator.of(context).pushReplacementNamed('home');
-}else
-{
-   AwesomeDialog(
-                            context: context,
-                            dialogType: DialogType.error,
-                            animType: AnimType.rightSlide,
-                            title: 'Error',
-                            desc:
-                                'Please Go To Your Gmail And Verify Your Email')
-                        .show();
-                  
-}
+                      if (await FirebaseAuth
+                          .instance.currentUser!.emailVerified) {
+                        Navigator.of(context).pushReplacementNamed('home');
+                      } else {
+                        AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.warning,
+                                animType: AnimType.rightSlide,
+                                title: 'Warning',
+                                desc: 'Check Your Gmail')
+                            .show();
+                        return;
+                      }
                     },
-                    icon: Icon(Icons.done, size: 50),
+                    icon: Icon(Icons.done, size: 60),
                   ),
                 ],
               ),
