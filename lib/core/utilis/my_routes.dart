@@ -4,6 +4,7 @@ import 'package:project/features/autho/login/view/page/login.dart';
 import 'package:project/features/autho/onboarding/view/page/onboarding.dart';
 import 'package:project/features/autho/registration/view/page/registration_page.dart';
 import 'package:project/features/autho/verification/view/page/verification_page.dart';
+import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/homePage.dart';
 
 class myRoutes {
@@ -22,28 +23,36 @@ class myRoutes {
     ];
   }
 
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case 'login':
+      case '/':
         return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => loginPage());
+          builder: (_) => OnboardingScreen(),
+        );
       case 'registration':
         return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => RegestrationPage());
-
+          builder: (_) => RegestrationPage(),
+        );
+      case 'login':
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => loginPage(),
+        );
       case 'verification':
         return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => verificationPage());
+          builder: (_) => verificationPage(),
+        );
       case 'forgetPassword':
         return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) => forget_pw());
-     case 'home':
+          builder: (_) => forget_pw(),
+        );
+      case 'home':
         return MaterialPageRoute<dynamic>(
-            builder: (BuildContext context) =>HomePage());
-
+          builder: (_) => dashboard(),
+        );
       default:
+        // Handle unknown routes by navigating to the OnboardingScreen
         return MaterialPageRoute<dynamic>(
-          builder: (BuildContext context) => OnboardingScreen(),
+          builder: (_) => OnboardingScreen(),
         );
     }
   }

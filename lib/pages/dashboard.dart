@@ -1,5 +1,6 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // import 'package:project/pages/bookingPage.dart';
 import 'package:project/pages/bookingPage.dart';
@@ -7,7 +8,6 @@ import 'package:project/pages/homePage.dart';
 
 import 'package:rolling_bottom_bar/rolling_bottom_bar.dart';
 import 'package:rolling_bottom_bar/rolling_bottom_bar_item.dart';
-
 
 class dashboard extends StatelessWidget {
   dashboard({super.key});
@@ -30,6 +30,28 @@ class dashboard extends StatelessWidget {
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           backgroundColor: Color(0xFF345069),
+          ///log out button 
+          actions: [
+            IconButton(
+              onPressed: () async {
+                // Sign out the user
+                await FirebaseAuth.instance.signOut();
+
+                // If using Google Sign-In, disconnect Google account
+                GoogleSignIn googleSignIn = GoogleSignIn();
+                if (await googleSignIn.isSignedIn()) {
+                  await googleSignIn.disconnect();
+                }
+
+                // Navigate to the login screen and remove all previous routes
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('login', (route) => false);
+              },
+              icon: Icon(Icons.exit_to_app),
+              iconSize: 35,
+              color: Colors.white,
+            )
+          ],
         ),
         body: PageView(
           controller: _pageControlller,

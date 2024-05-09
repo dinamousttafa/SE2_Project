@@ -10,6 +10,7 @@ import 'package:project/features/autho/login/view/components/custombtn.dart';
 import 'package:project/features/autho/login/view/components/customtxtbtn.dart';
 import 'package:project/features/autho/registration/view/page/registration_page.dart';
 import 'package:project/features/autho/verification/view/page/verification_page.dart';
+import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/homePage.dart';
 
 class dataWidget extends StatelessWidget {
@@ -135,7 +136,7 @@ class dataWidget extends StatelessWidget {
                   if (credential.user!.emailVerified) {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomePage();
+                      return dashboard();
                     }));
                   } else {
                    Navigator.push(context,
