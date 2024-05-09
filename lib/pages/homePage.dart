@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/category/maincategory.dart';
+import 'package:project/views/games.dart';
+import 'package:project/views/mobileapplication.dart';
+import 'package:project/views/webApplactionsCategory.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -41,17 +44,32 @@ class HomePage extends StatelessWidget {
                   category(
                     imageUrl: 'assets/images/web.jpeg',
                     title: 'Web Aplication',
-                    onTap: () {},
+                   onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => webCategory()),
+                            );
+                          },
                   ),
                   category(
                     imageUrl: 'assets/images/games.jpeg',
                     title: 'Games',
-                    onTap: () {},
+                    onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => gamesCategory()),
+                            );
+                          },
                   ),
                   category(
                     imageUrl: 'assets/images/mobile.jpeg',
                     title: 'mobile app',
-                    onTap: () {},
+                    onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MobileCategory()),
+                            );
+                          },
                   ),
                   Spacer(
                     flex: 1,
