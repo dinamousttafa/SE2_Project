@@ -5,8 +5,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/core/utilis/validation.dart';
+import 'package:project/features/autho/forgetPassword/view/page/forgetPW.dart';
 import 'package:project/features/autho/login/view/components/custombtn.dart';
 import 'package:project/features/autho/login/view/components/customtxtbtn.dart';
+import 'package:project/features/autho/registration/view/page/registration_page.dart';
+import 'package:project/features/autho/verification/view/page/verification_page.dart';
+import 'package:project/pages/homePage.dart';
+
 class dataWidget extends StatelessWidget {
   dataWidget({Key? key});
   TextEditingController passwordController = TextEditingController();
@@ -15,39 +20,39 @@ class dataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///sign in with google function
-  Future<void> signInWithGoogle(BuildContext context) async {
-  try {
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      clientId: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
-    );
-    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    Future<void> signInWithGoogle(BuildContext context) async {
+      try {
+        final GoogleSignIn googleSignIn = GoogleSignIn(
+          clientId: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
+        );
+        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-    if (googleUser != null) {
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+        if (googleUser != null) {
+          final GoogleSignInAuthentication googleAuth =
+              await googleUser.authentication;
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      await FirebaseAuth.instance.signInWithCredential(credential);
+          final AuthCredential credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken,
+            idToken: googleAuth.idToken,
+          );
+          await FirebaseAuth.instance.signInWithCredential(credential);
 
-      Navigator.of(context).pushReplacementNamed('home');
-    } else {
-      print('Google sign-in canceled');
-      return;
+          Navigator.of(context).pushReplacementNamed('home');
+        } else {
+          print('Google sign-in canceled');
+          return;
+        }
+      } catch (e) {
+        print('Error signing in with Google: $e');
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.rightSlide,
+          title: 'Error',
+          desc: 'Failed to sign in with Google. Please try again later.',
+        ).show();
+      }
     }
-  } catch (e) {
-    print('Error signing in with Google: $e');
-    AwesomeDialog(
-      context: context,
-      dialogType: DialogType.error,
-      animType: AnimType.rightSlide,
-      title: 'Error',
-      desc: 'Failed to sign in with Google. Please try again later.',
-    ).show();
-  }
-}
 
     return Container(
       decoration: const BoxDecoration(
@@ -128,10 +133,15 @@ class dataWidget extends StatelessWidget {
                           password: passwordController.text);
 
                   if (credential.user!.emailVerified) {
-                    Navigator.of(context).pushReplacementNamed('home');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return HomePage();
+                    }));
                   } else {
-                    Navigator.of(context).pushReplacementNamed('verification');
-
+                   Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return verificationPage();
+                    }));
                   }
                 } on FirebaseAuthException catch (e) {
                   print(context);
@@ -164,45 +174,47 @@ class dataWidget extends StatelessWidget {
               },
             ),
             const SizedBox(height: 20),
-          Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 50),
-  child: Container(
-    width: double.infinity,
-    child: ElevatedButton(
-      onPressed: ()async {
-        await signInWithGoogle(context);
-      },
-      style: ElevatedButton.styleFrom(
-       //foregroundColor: Color(0xffF7F7F5),
-        backgroundColor: Color(0xff4B6EC0),
-        padding: EdgeInsets.symmetric(vertical: 15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Login with Google",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.normal,
-              fontFamily: 'Pacifico',
-              color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await signInWithGoogle(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    //foregroundColor: Color(0xffF7F7F5),
+                    backgroundColor: Color(0xff4B6EC0),
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Login with Google",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Pacifico',
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset(
+                        'assets/images/4.png',
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            
-          ),
-          SizedBox(width: 10,),
-          
-         Image.asset('assets/images/4.png',width: 30,),
-          
-        ],
-      ),
-    ),
-  ),
-),
-       const SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -222,8 +234,10 @@ class dataWidget extends StatelessWidget {
                       CustomTextButton(
                         text: 'Sign Up',
                         onPressed: () {
-                          Navigator.pushReplacementNamed(
-                              context, 'registration');
+                         Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return RegestrationPage();
+                    }));
                         },
                       ),
                     ],
@@ -234,7 +248,10 @@ class dataWidget extends StatelessWidget {
                     onPressed: () {
                       // Navigate toforget page
 
-                      Navigator.pushReplacementNamed(context, 'forgetPassword');
+                         Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return forget_pw();
+                    }));
                     },
                   ),
                 ],
