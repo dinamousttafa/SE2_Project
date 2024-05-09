@@ -13,22 +13,6 @@ class HomePage extends StatelessWidget {
       backgroundColor: Color(0xFF345069),
       appBar: AppBar(
         backgroundColor: Color(0xFF345069),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              ///if i login with google ang need to log out from it
-              
-              GoogleSignIn googleSignIn=GoogleSignIn();
-              googleSignIn.disconnect();
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('login', (route) => false);
-            },
-            icon: Icon(Icons.exit_to_app),
-            iconSize: 35,
-            color: Colors.white,
-          )
-        ],
       ),
       body: ListView(
         children: [
