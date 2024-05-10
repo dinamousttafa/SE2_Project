@@ -249,7 +249,7 @@ class dataWidget extends StatelessWidget {
                     onPressed: () {
                       // Navigate toforget page
 
-                         Navigator.push(context,
+                        Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return forget_pw();
                     }));

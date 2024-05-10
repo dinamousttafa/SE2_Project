@@ -1,23 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project/category/notifi_Caregory.dart';
 
 class NotificationPage extends StatelessWidget {
-  NotificationPage();
+  final List<QueryDocumentSnapshot> data = [];
+
+  NotificationPage({required String text1, required String text2, required int text3}) {
+    getData();
+  }
+// method to get data from firebaseStore
+  Future<void> getData() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection("requestservice").get();
+    data.addAll(querySnapshot.docs);
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> noti_list = [];
-
-    for (int i = 0; i < noti_list.length; i++) {
-      noti_list.add(
-        notification(
-          text1: 'Developer',
-          text2: 'Amgoood',
-        ),
-      );
-    }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -30,14 +29,20 @@ class NotificationPage extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
-          children: [
-            notification(
-              text1: 'Here what will be added',
-              text2: 'Amged Elsayed',
-            ),
-            for (int i = 0; i < noti_list.length; i++) noti_list[i],
-          ],
+        body: ListView.builder(
+          itemCount: data.length, 
+          itemBuilder: (BuildContext context, int index) {
+            
+            String text1 = data[index].get("${data[index]['serviceName']}");
+            String text2 = data[index].get("${data[index]['description']}");
+            int    text3    = data[index].get("${data[index]['padget']}");
+            return NotificationPage(
+              text1: text1,
+              text2: text2,
+              text3: text3,
+
+            );
+          },
         ),
       ),
     );
