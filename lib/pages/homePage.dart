@@ -22,24 +22,24 @@ class HomePage extends StatelessWidget {
           Column(
             children: [
               CircleAvatar(
-                radius: 73,
+                radius: 43,
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
-                  radius: 70,
+                  radius: 40,
                   backgroundImage: AssetImage('images/logo.jpeg'),
                 ),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: const EdgeInsets.only(top: 20),
             child: Container(
-              height: 220,
+              height: 430,
               child: ListView(
                 padding: EdgeInsets.zero,
                 primary: false,
                 shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
+                
                 children: [
                   category(
                     imageUrl: 'assets/images/web.jpeg',

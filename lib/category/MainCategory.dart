@@ -13,7 +13,7 @@ class category extends StatelessWidget {
       padding: EdgeInsetsDirectional.fromSTEB(16, 8, 0, 12),
       child: Container(
         width: 270,
-        height: 150,
+        height: 200,
         decoration: BoxDecoration(
           color: Colors.grey[200], // Placeholder color
           boxShadow: [
