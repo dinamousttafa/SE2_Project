@@ -1,6 +1,7 @@
 // import 'dart:js';
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/pages/requestPage.dart';
 import 'package:project/views/applicationmodel.dart';
 
 // import 'package:url_launcher/url_launcher.dart';
@@ -108,7 +109,13 @@ class _gamesCategoryState extends State<gamesCategory> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xffadbccd),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>requestPage()),
+                            );
+            },
+            
             child: Text(
               "Request",
               style: TextStyle(fontSize: 18, color: Colors.black),
