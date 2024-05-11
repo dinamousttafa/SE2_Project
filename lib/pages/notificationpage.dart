@@ -40,6 +40,7 @@ class _NotificationPageState extends State<NotificationPage> {
     }
   }
 
+
   Future<void> addToBoking(int index) async {
     CollectionReference service =
         FirebaseFirestore.instance.collection('Booking');
@@ -55,6 +56,7 @@ class _NotificationPageState extends State<NotificationPage> {
       print("Failed to add service: $error");
     }
   }
+
 
   @override
   void initState() {
@@ -198,8 +200,12 @@ class _NotificationPageState extends State<NotificationPage> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
                                       onPressed: () async {
+
                                         await addToBoking(index);
                                         deleteDocument(data[index].id);
+
+                                      
+
                                       },
                                       child: const Text(
                                         "Accept",

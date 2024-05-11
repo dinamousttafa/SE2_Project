@@ -239,7 +239,7 @@ class dataWidget extends StatelessWidget {
                       CustomTextButton(
                         text: 'Sign Up',
                         onPressed: () {
-                         Navigator.push(context,
+                        Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return RegestrationPage();
                     }));
@@ -253,7 +253,7 @@ class dataWidget extends StatelessWidget {
                     onPressed: () {
                       // Navigate toforget page
 
-                         Navigator.push(context,
+                        Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return forget_pw();
                     }));
