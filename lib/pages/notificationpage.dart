@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'dart:html';
 
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotificationPage extends StatefulWidget {
   NotificationPage({Key? key}) : super(key: key);
@@ -10,8 +11,11 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+  TextEditingController serviceName = TextEditingController();
+
+  TextEditingController description = TextEditingController();
   final List<QueryDocumentSnapshot> data = [];
-// method to get data from firebaseStore
+
   Future<void> getData() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("requestservice").get();
@@ -19,6 +23,25 @@ class _NotificationPageState extends State<NotificationPage> {
       data.addAll(querySnapshot.docs);
     });
   }
+
+  Future<void> deleteDocument(String documentId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("requestservice")
+          .doc(documentId)
+          .delete();
+    
+      setState(() {
+        data.removeWhere((item) => item.id == documentId);
+      });
+      print("Document deleted successfully!");
+    } catch (e) {
+      print("Error deleting document: $e");
+    }
+  }
+
+  
+
   @override
   void initState() {
     getData();
@@ -41,7 +64,7 @@ class _NotificationPageState extends State<NotificationPage> {
         ),
         body: ListView.builder(
           itemCount: data.length,
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (BuildContext context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
@@ -160,13 +183,13 @@ class _NotificationPageState extends State<NotificationPage> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                      
+                                      },
                                       child: const Text(
                                         "Accept",
                                         style: TextStyle(
-                                            fontSize: 16,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255)),
+                                            fontSize: 16, color: Colors.white),
                                       ),
                                     ),
                                   ),
@@ -176,13 +199,13 @@ class _NotificationPageState extends State<NotificationPage> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.red),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        deleteDocument(data[index].id);
+                                      },
                                       child: const Text(
                                         "Reject",
                                         style: TextStyle(
-                                            fontSize: 16,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255)),
+                                            fontSize: 16, color: Colors.white),
                                       ),
                                     ),
                                   ),
