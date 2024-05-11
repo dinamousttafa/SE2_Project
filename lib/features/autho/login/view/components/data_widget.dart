@@ -12,6 +12,8 @@ import 'package:project/features/autho/registration/view/page/registration_page.
 import 'package:project/features/autho/verification/view/page/verification_page.dart';
 import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/homePage.dart';
+import 'package:project/pages/notificationpage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class dataWidget extends StatelessWidget {
   dataWidget({Key? key});
@@ -124,27 +126,40 @@ class dataWidget extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-            CustomButton(
-              text: 'Login',
-              onPressed: () async {
-                try {
-                  final credential = await FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: emailController.text,
-                          password: passwordController.text);
+          CustomButton(
+  text: 'Login',
+  onPressed: () async {
+    try {
+    
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text);
 
-                  if (credential.user!.emailVerified) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return dashboard();
-                    }));
-                  } else {
-                   Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return verificationPage();
-                    }));
-                  }
-                } on FirebaseAuthException catch (e) {
+      if (credential.user != null && credential.user!.emailVerified) {
+        if (emailController.text == 'dinamousttafa@gmail.com' &&
+            passwordController.text == '123456789') {
+          Navigator.push(
+          context,
+          MaterialPageRoute(
+          builder: (context) => NotificationPage(),
+          ),
+        );
+
+        } else {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+            return dashboard();
+          }));
+        }
+      } else {
+        // User is not verified or credentials are incorrect
+        throw FirebaseAuthException(
+          code: 'invalid-credentials',
+          message: 'Invalid email or password.',
+        );
+      }
+    } on FirebaseAuthException catch (e) {
                   print(context);
                   if (e.code == e.code) {
                     log('No user found for that email.');
@@ -157,23 +172,12 @@ class dataWidget extends StatelessWidget {
                         .show();
                   }
 
-                  ///i need to distinguish between them
+      // Show error message using AwesomeDialog or any other method
+      
+    }
+  },
+),
 
-                  // else if (e.code == 'wrong-password') {
-                  //   log('Wrong password provided for that user.');
-                  //   AwesomeDialog(
-                  //     context: context,
-                  //     dialogType: DialogType.error,
-                  //     animType: AnimType.rightSlide,
-                  //     title: 'Error',
-                  //     desc: 'Wrong password provided for that user.',
-
-                  //   ).show();
-
-                  // }
-                }
-              },
-            ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -249,7 +253,7 @@ class dataWidget extends StatelessWidget {
                     onPressed: () {
                       // Navigate toforget page
 
-                        Navigator.push(context,
+                         Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return forget_pw();
                     }));
