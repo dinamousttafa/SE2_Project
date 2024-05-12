@@ -22,17 +22,21 @@ class HomePage extends StatelessWidget {
           Column(
             children: [
               CircleAvatar(
-                radius: 43,
+                radius: 53,
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage('images/logo.jpeg'),
+                  radius: 50,
+                  backgroundImage: AssetImage('images/logooo.jpeg'),
                 ),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 15),
+            child: Center(child: Text('visit our websites to learn more', style: TextStyle(fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15),
             child: Container(
               height: 430,
               child: ListView(

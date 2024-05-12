@@ -1,10 +1,10 @@
 // import 'dart:js';
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:url_launcher/url_launcher.dart';
+import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/requestPage.dart';
 import 'package:project/views/applicationmodel.dart';
-
-// import 'package:url_launcher/url_launcher.dart';
 
 import 'Drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,17 +78,22 @@ class _gamesCategoryState extends State<gamesCategory> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(
-          "Games",
-          style: TextStyle(
-            fontSize: 27,
-          ),
+        title: Center(
+          child: Text(
+            "Games",
+            style: TextStyle(
+             fontSize: 22, fontWeight: FontWeight.bold),
+            ),
         ),
-        centerTitle: true,
+       
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.logout_outlined),
+           onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return dashboard();
+              }));
+            },
+            icon: Icon(Icons.arrow_back),
           ),
         ],
       ),
@@ -101,13 +106,13 @@ class _gamesCategoryState extends State<gamesCategory> {
         Apptemplate(app: Apps[5]),
         Apptemplate(app: Apps[6]),
         Apptemplate(app: Apps[7]),
-        SizedBox(height: 8),
+        SizedBox(height: 10),
         Container(
           height: 50,
           width: 80,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xffadbccd),
+              backgroundColor: Colors.blue
             ),
             onPressed: () {
               Navigator.push(
@@ -118,7 +123,7 @@ class _gamesCategoryState extends State<gamesCategory> {
             
             child: Text(
               "Request",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ),

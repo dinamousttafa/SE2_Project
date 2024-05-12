@@ -2,6 +2,7 @@
 import 'dart:ui';
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/requestPage.dart';
 import 'package:project/views/applicationmodel.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -80,15 +81,17 @@ class _webCategoryState extends State<webCategory> {
         backgroundColor: Colors.transparent,
         title: Text(
           "Web Applications",
-          style: TextStyle(
-            fontSize: 24,
-          ),
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.logout_outlined),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return dashboard();
+              }));
+            },
+            icon: Icon(Icons.arrow_back),
           ),
         ],
       ),
@@ -101,24 +104,23 @@ class _webCategoryState extends State<webCategory> {
         Apptemplate(app: Apps[5]),
         Apptemplate(app: Apps[6]),
         Apptemplate(app: Apps[7]),
-        SizedBox(height: 8),
+        SizedBox(height: 10),
         Container(
           height: 50,
           width: 80,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xffadbccd),
+              backgroundColor: Colors.blue
             ),
             onPressed: () {
               Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) =>requestPage()),
-                            );
+                context,
+                MaterialPageRoute(builder: (context) => requestPage()),
+              );
             },
-            
             child: Text(
               "Request",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+               style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ),

@@ -25,7 +25,7 @@ class _ApptemplateState extends State<Apptemplate> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: EdgeInsets.only(bottom: 25),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Container(
           height: 135,
           decoration: BoxDecoration(
@@ -39,8 +39,8 @@ class _ApptemplateState extends State<Apptemplate> {
                 offset: const Offset(5, 5),
               ),
               BoxShadow(
-                blurRadius: 6,
-                color: Colors.black,
+                blurRadius: 2,
+                color: Color.fromARGB(100, 155, 149, 149),
                 spreadRadius: 1,
                 offset: const Offset(5, 5),
               ),
@@ -52,9 +52,17 @@ class _ApptemplateState extends State<Apptemplate> {
           ),
           child: Row(
             children: [
-              Image.asset(
-                widget.app.image,
-                width: 180,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  width: 110,
+                  height: 120,
+                
+                  child: Image.asset(
+                    widget.app.image,
+                   
+                  ),
+                ),
               ),
               Expanded(
                 child: Column(
@@ -65,25 +73,29 @@ class _ApptemplateState extends State<Apptemplate> {
                         widget.app.name,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
                       ),
                     ),
-                    Text(
-                      widget.app.descripation,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: TextStyle(color: Colors.black),
+                    Container(
+                      width: 230,
+                      child: Text(
+                        widget.app.descripation,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 80),
+                      padding: EdgeInsets.only(right: 40),
                       child: SelectableText.rich(
                         TextSpan(
                           children: [
                             TextSpan(
                               text: "See Application",
                               style: TextStyle(
-                                fontSize: 13.5,
+                                fontSize: 14,fontWeight: FontWeight.bold,
                                 color: _hover ? Colors.blue : Colors.black,
                               ),
                               mouseCursor: SystemMouseCursors.click,
@@ -96,7 +108,7 @@ class _ApptemplateState extends State<Apptemplate> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 65),
+                      padding: EdgeInsets.only(right: 40),
                       child: RatingBar.builder(
                           itemSize: 16,
                           initialRating: 3.5,

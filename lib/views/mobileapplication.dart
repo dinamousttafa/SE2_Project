@@ -1,19 +1,20 @@
 // import 'dart:js';
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:url_launcher/url_launcher.dart';
+//import 'package:soft/views/dash.dart';
+//import 'dash.dart';
+import 'package:project/pages/dashboard.dart';
 import 'package:project/pages/requestPage.dart';
 import 'package:project/views/applicationmodel.dart';
-
-// import 'package:url_launcher/url_launcher.dart';
-
 import 'Drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-//import 'package:soft/views/dash.dart';
+
 import 'Drawerheader.dart';
 import 'applicationtemplate.dart';
-//import 'dash.dart';
+
 
 class MobileCategory extends StatefulWidget {
   State<MobileCategory> createState() => _MobileCategoryState();
@@ -87,9 +88,13 @@ class _MobileCategoryState extends State<MobileCategory> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.logout_outlined),
+           IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return dashboard();
+              }));
+            },
+            icon: Icon(Icons.arrow_back),
           ),
         ],
       ),
@@ -102,13 +107,13 @@ class _MobileCategoryState extends State<MobileCategory> {
         Apptemplate(app: Apps[5]),
         Apptemplate(app: Apps[6]),
         Apptemplate(app: Apps[7]),
-        SizedBox(height: 8),
+        SizedBox(height: 10),
         Container(
           height: 50,
           width: 80,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xffadbccd),
+              backgroundColor: Colors.blue
             ),
             onPressed: () {
                Navigator.push(
@@ -119,7 +124,7 @@ class _MobileCategoryState extends State<MobileCategory> {
             
             child: Text(
               "Request",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ),

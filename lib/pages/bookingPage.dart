@@ -31,12 +31,16 @@ class _BookingPageState extends State<BookingPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Color(0xFF345069) ,
         appBar: AppBar(
-          title: const Text(
-            'Bookings',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+          backgroundColor: Color(0xFF345069),
+          title: Center(
+            child: const Text(
+              'Bookings',
+              style: TextStyle(
+                fontSize: 25,color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -48,7 +52,7 @@ class _BookingPageState extends State<BookingPage> {
               child: Container(
                 height: 220,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: Color.fromARGB(255, 181, 185, 185).withOpacity(0.8),
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 3,

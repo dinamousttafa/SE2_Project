@@ -28,10 +28,21 @@ class requestPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+           actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return dashboard();
+              }));
+            },
+            icon: Icon(Icons.arrow_back, color: Colors.white,),
+          ),
+        ],
           title: Center(
             child: Text(
               'REQUESTING',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
+              
             ),
           ),
           backgroundColor: Color(0xFF345069),
@@ -44,7 +55,7 @@ class requestPage extends StatelessWidget {
                 child: Center(
                   child: CircleAvatar(
                     radius: 73,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.black,
                     child: CircleAvatar(
                       radius: 70,
                       backgroundImage: AssetImage('assets/images/logo.jpeg'),

@@ -2,6 +2,9 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:project/features/autho/login/view/page/login.dart';
+import 'package:project/pages/dashboard.dart';
+import 'package:project/pages/homePage.dart';
 
 class NotificationPage extends StatefulWidget {
   NotificationPage({Key? key}) : super(key: key);
@@ -30,7 +33,7 @@ class _NotificationPageState extends State<NotificationPage> {
           .collection("requestservice")
           .doc(documentId)
           .delete();
-    
+
       setState(() {
         data.removeWhere((item) => item.id == documentId);
       });
@@ -40,12 +43,10 @@ class _NotificationPageState extends State<NotificationPage> {
     }
   }
 
-
   Future<void> addToBoking(int index) async {
     CollectionReference service =
         FirebaseFirestore.instance.collection('Booking');
 
-  
     try {
       await service.add({
         'servicename': data[index]["servicename"],
@@ -56,7 +57,6 @@ class _NotificationPageState extends State<NotificationPage> {
       print("Failed to add service: $error");
     }
   }
-
 
   @override
   void initState() {
@@ -70,6 +70,22 @@ class _NotificationPageState extends State<NotificationPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return loginPage();
+                  }));
+                },
+                icon: Icon(Icons.arrow_back)),
+                IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return dashboard();
+                  }));
+                },
+                icon: Icon(Icons.home)),
+          ],
           title: const Text(
             'Notification',
             style: TextStyle(
@@ -200,12 +216,8 @@ class _NotificationPageState extends State<NotificationPage> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green),
                                       onPressed: () async {
-
                                         await addToBoking(index);
                                         deleteDocument(data[index].id);
-
-                                      
-
                                       },
                                       child: const Text(
                                         "Accept",
